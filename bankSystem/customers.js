@@ -5,6 +5,8 @@ showSingleCustmor= document.querySelector("#showBtn")
 IdDetalisBtn = document.querySelector("#showDetalis")
 addBalanceBtn =document.querySelector("#addBalanceBtn")
 getValueAddbalance =document.querySelector("#add")
+SubBalanceBtn = document.querySelector("#withDrawBtn")
+getValueWithDraw =document.querySelector("#sub")
 
 
 function getCustomers(){
@@ -85,9 +87,6 @@ IdDetalisBtn.addEventListener("click",function(){
    let IdDetalisSec = document.querySelector(".IdDetalisSec")
 
    IdDetalisSec.innerHTML=""
-        // IdDetalisSec.innerHTML=""
-
-        if(Number(IdNumber)){
             
             customers.forEach(e=>{
             let idForeach=e.accNum
@@ -108,15 +107,16 @@ IdDetalisBtn.addEventListener("click",function(){
                 IdDetalisSec.appendChild(h2)
                 IdDetalisSec.appendChild(h3)
                 IdDetalisSec.appendChild(button)
+               
+            }else{
+                h1 = document.createElement("h1")
+                h1.textContent ="Please Right Numbers only"
+                IdDetalisSec.appendChild(h1)
+                console.log("error");
+                 
             }         
-            })
-//    
-        }else{
-            h1 = document.createElement("h1")
-            h1.textContent ="Please Right Numbers only"
-            IdDetalisSec.appendChild(h1)
-            
-        }     
+            })   
+         
    console.log(customers)
 console.log();
 })
@@ -161,3 +161,55 @@ getValueAddbalance.addEventListener("click",function(){
     )
    
 })
+
+SubBalanceBtn.addEventListener("click",function(e){
+    showHide(withDrawBtn, 'withDraw', 'withDraw from Balance','Hide Balance');
+})
+
+getValueWithDraw.addEventListener("click",function(){
+    
+    let getValue= document.querySelector("#withDraw input").value
+     console.log(getValue);
+     let subBalance= document.getElementById("subbalance")
+     subBalance.innerHTML=""
+   
+     customers.forEach(e=>{
+         let id =e.accNum
+         if(getValue == id){
+             let valuew= Number(e.balance)
+             h3 = document.createElement("h3")
+             h3.textContent =`Welcome back ${e.cName} Your Balance ${e.balance}`
+             subBalance.appendChild(h3)
+             input= document.createElement("input")
+             input.setAttribute("placeholder","How much you want to add")
+             input.className="form-control handelValue"
+             subBalance.appendChild(input)
+             button = document.createElement("button")
+             button.textContent="Sub"
+             button.className ="btn btn-primary"
+             button.addEventListener("click", function(){
+                value= Number(document.querySelector(".handelValue").value)
+                 console.log(typeof(value));
+                
+                 if(value <= valuew){
+                    valuew-=value
+                    console.log(valuew);
+                    h3.textContent =`Your Balance ${valuew}`
+                   
+                 }else{
+                    myNewBalance= document.createElement("h3")
+                    subBalance.textContent=""
+                    myNewBalance.textContent =`"You dont have enough credit"`
+                    subBalance.appendChild(myNewBalance)
+                 }
+             })
+             subBalance.appendChild(button)
+             
+         }         
+         
+     }
+     )
+    
+ })
+ 
+
