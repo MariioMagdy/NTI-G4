@@ -1,0 +1,18 @@
+{{>header}}
+{{>nav}}
+<div class="container">
+<form action="/addTask" method="post" class="border p-4 my-4">
+    <label for="name">Task Name</label>
+    <input class="form-control" type="text" name="name" id="name" value="" placeholder="Task Name">
+    <label for="status">status</label>
+    <input class="form-control" type="text" name="status" id="status" value="" placeholder="status">
+    <div class="form-floating my-3">
+  <textarea class="form-control" name="textarea" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+  <label for="floatingTextarea2">Task Description</label>
+</div>
+<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+</div>
+
+
+{{>footer}}

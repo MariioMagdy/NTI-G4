@@ -1,0 +1,33 @@
+{{>header}}
+{{>nav}}
+<div class="container">
+
+    {{#if error}}
+    <div class="alert alert-danger">
+        {{error}}
+    </div>
+    {{else}}
+    <div class="row">  
+        {{#each data}}
+        <div class="col-md-4 my-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    {{this.name}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{this.status}}</h5>
+                    <p class="card-text">{{this.textarea}}</p>
+                    
+                    <a class="btn btn-danger" href="/delete/{{this._id}}">Delete</a>
+                    <a class="btn btn-primary" href="/update/{{this._id}}">Update</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+                </div>
+        </div>
+      {{/each}}
+    </div>
+    {{/if}}
+</div>
+{{>footer}}l

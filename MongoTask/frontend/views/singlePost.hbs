@@ -1,0 +1,51 @@
+{{>header}}
+{{>nav}}
+<div class="container">
+
+    {{#if error}}
+    <div class="alert alert-danger">
+        {{error}}
+    </div>
+    {{else}}
+    <div class="row">  
+        
+        <div class="col-md-4 my-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    {{singlePost.id}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{singlePost.title}}</h5>
+                    <p class="card-text">{{singlePost.body}}</p>
+                    <a href='/post/{{singlePost.id}}/comments' class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+                </div>
+        </div>
+        <div class="row">  
+        {{#each messages}}
+        <div class="col-md-4 my-3">
+            <div class="card text-center">
+                <div class="card-header">
+                    {{this.id}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{this.name}}</h5>
+                    <p class="card-text">{{this.body}}</p>
+                    <a href="/post/{{this.id}}" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    {{this.email}}
+                </div>
+                </div>
+        </div>
+    {{/each}}
+    </div>
+
+    </div>
+    {{/if}}
+</div>
+{{!-- {{>comments}} --}}
+{{>footer}}l
